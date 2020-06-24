@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col-sm-12">
+        <h3 *ngIf="lists.title"> {{ lists.title }}</h3>
+        <p *ngIf="lists.author">By : <span style="color: red;">{{ lists.author }}</span></p>
+        <p *ngIf="lists.publishedAt">Published At: {{ lists.publishedAt }}</p>
+    </div>
+</div>
+<div class="row mt-5" *ngIf="lists">
+    <div class="col-sm-3">
+        <ul class="list-group sticky-top">
+            <li class="list-group-item text-center">
+                <h1>23</h1>
+                <h5>shares</h5>
+            </li>
+            <li class="list-group-item"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;<span>Email</span></li>
+            <li class="list-group-item"><i class="fa fa-facebook" aria-hidden="true"></i>&nbsp;<span>Facebook</span>
+            </li>
+            <li class="list-group-item"><i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;<span>Twitter</span></li>
+            <li class="list-group-item"><i class="fa fa-share" aria-hidden="true"></i>&nbsp;<span>More</span></li>
+        </ul>
+    </div>
+    <div class="col-sm-9">
+        <img src="{{ lists.urlToImage }}" alt="" class="img-responsive"
+             style="display: block; width: 100%; height: 400px;"><br>
+        <p>Description: {{ lists.description }}</p>
+        <p>Content: {{ lists.content }}</p>
+        <button class="btn btn-success" style="margin: 0 25px 15px 0;"><i class="fa fa-thumbs-up"
+                aria-hidden="true"></i>&nbsp;I found this helpful</button>
+        <button class="btn btn-secondary" style="margin-bottom: 15px;"><i class="fa fa-thumbs-down" aria-hidden="true"></i>&nbsp;I did not find this helpful</button>
+        <h3 class="mt-5">Comments</h3>
+        <div class=" row border rounded pt-3">
+            <div class="col-sm-1"><i class="fa fa-user-circle fa-3x" aria-hidden="true"></i></div>
+            <div class="col-sm-11">
+                <p><span style="font-size: 20px; font-weight: bold;">Olya </span> Jan 16,2020 Replay</p>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            </div>
+        </div>
+        <h3 class="mt-5">Join the conversation</h3>
+        <form name='form' #form='ngForm' (ngSubmit)='send(form)'>
+            <div class="form-group" style="width: 60%;">
+                <input type="text" class="form-control" id="name"  name='name' #name='ngModel' ngModel
+                    required placeholder="Name">
+                <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
+                    Name is required.
+                </div>
+            </div> 
+            
+            <div class="form-group" style="width: 60%;">
+                <input type="email" class="form-control" id="email"  name='email' #email='ngModel' ngModel
+                    required placeholder="Email">
+                <div *ngIf="email.touched && email.invalid" class="alert alert-danger">
+                    Email is required.
+                </div>
+            </div>  
+
+            <div class="form-group">
+                <textarea type="text" class="form-control" id="message"  name='message' #message='ngModel' ngModel
+                          required placeholder="Message" rows="8"></textarea>
+                <div *ngIf="message.touched && message.invalid" class="alert alert-danger">
+                    Message is required.
+                </div>
+            </div>  
+
+            <button class="btn btn-danger" [disabled]='!form.valid' style="padding: 5px 20px;">Send</button>
+        </form>
+    </div>
+</div>

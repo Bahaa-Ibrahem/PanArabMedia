@@ -1,0 +1,15 @@
+<div class="row">
+    <ng-container *ngFor="let list of lists; let i = index">
+        <div class="col-md-6 col-sm-12">
+            <div class="card mx-auto" style="height: 33rem; overflow: auto;">
+                <img style="height: 50%;" [src]="list.urlToImage" class="card-img-top" alt="Loading">
+                <div class="card-body">
+                <h5 class="card-title overflow-auto" style="height: 73px;">{{ list.title }}</h5>
+                <p class="card-text overflow-auto" style="height: 75px;">{{ list.description }}</p>
+                <a routerLink="/list/title" [queryParams]="{ title: list.title }" class="btn btn-primary">Details</a>
+                </div>
+            </div>
+            <div *ngIf="(i + 1) % 2 === 0" class="w-100"></div>
+        </div>
+    </ng-container >
+</div>
